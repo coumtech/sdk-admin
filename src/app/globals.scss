@@ -1,0 +1,1153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* :root {
+  --background: #ffffff
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.Music-background-home-page {
+  background-image: url("../app/assets/images/Music.png");
+  background-position: no repeat;
+}
+
+.main-heading {
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 86.4px;
+  letter-spacing: -0.03em;
+}
+
+.header-home-page {
+  padding: 50px;
+  padding-top: 15px;
+}
+
+.home-page-title {
+  padding-bottom: 200px;
+}
+
+.header-right-text {
+  width: 132px;
+  height: 50px;
+  background-color: #d9b535;
+  color: #030303;
+  border-radius: none;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 90% 100%, 0 100%);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.header-typography {
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  color: #f4f4f4;
+}
+
+.clip-cut-corners {
+  clip-path: polygon(5% 0, 96% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
+  background-color: #101010;
+}
+
+.clip-cut-corners-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  /* Adjust the size as needed */
+  height: 1rem;
+  /* Adjust the size as needed */
+  background: inherit;
+  /* Same background color as the input */
+  clip-path: polygon(100% 0, 0 0, 0 100%);
+  z-index: 1;
+  /* Ensure it appears above the border */
+}
+
+.Upper-text-format {
+  margin-top: -100px;
+  color: #f4f4f4;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.home-main-title-bigger {
+  padding: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 120px;
+}
+
+.btn-home-page {
+  width: 220px;
+  height: 58px;
+  overflow: hidden;
+  background-color: #d9b535;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 90% 100%, 0 100%);
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  font-weight: 700;
+  color: #030303;
+
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.home-header {
+  background: #0a0b06cc;
+}
+
+.email-clip-cut-corners-footer {
+  position: relative;
+}
+
+.email-clip-cut-corners-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  /* Adjust the size of the cut */
+  height: 20px;
+  /* Adjust the size of the cut */
+  background-color: #f3f4f6;
+  /* Background color of the container */
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.email-clip-cut-corners-footer input {
+  /* padding-left: 20px; Ensure text doesn't overlap the cut */
+  background: transparent;
+  /* Ensure background transparency */
+}
+
+.card-1 {
+  /* padding: 1px; */
+  /* width: 350px;
+  height: 259px; */
+  /* top: 946px; */
+  /* left: 80px; */
+  gap: 0px;
+  border: 1px solid #464646;
+  background-color: #101010;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
+}
+
+.FAQ-section {
+  background-color: #d9b535;
+  color: #030303;
+  /* //styleName: Heading6; */
+  font-family: Play;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.dropdown-faq-text {
+  /* //styleName: Body_semi; */
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  padding-left: 32px;
+  padding-top: 11px;
+}
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  /* --tw-divide-opacity: 1; */
+  border-color: #464646 !important;
+}
+
+.faqs-corner-cut {
+  margin-bottom: 70px;
+  /* clip-path: polygon(0 0, 100% 0, 100% 50%, 85% 100%, 0 100%); */
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 80% 100%, 0 100%);
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.Faqs-heading-text {
+  /* padding-bottom: 25px; */
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: #f4f4f4;
+  font-family: var(--font-play-bold);
+}
+
+.customer-review-text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: left;
+  color: #a5a5a5;
+}
+
+.trust-our-text {
+  color: #d9b535;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.tracking-tight-text {
+  color: #f4f4f4;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.pagination-cut-corner {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(88% - 10px));
+  width: 50px;
+  height: 50px;
+  border: 1px solid #464646;
+}
+
+.faqs-box {
+  padding: 40px;
+}
+
+.pagination-right {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20px),
+    calc(90% - 10px) 100%,
+    0 100%
+  );
+  width: 50px;
+  height: 50px;
+  border: 1px solid #464646;
+}
+
+.contact-profile-section {
+  /* height: 259px;
+  width: 428px; */
+  background-color: #101010;
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 87% 100%, 0 100%);
+  border: 1px solid #464646;
+}
+
+.parent-flow {
+  background-color: yellow;
+  display: flex;
+  padding: 25px;
+}
+
+.achieve-font-style {
+  padding: 25px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 33.6px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.custom-border {
+  /* width: 70%; */
+  width: 100%;
+  border: 1px solid #464646;
+  /* margin: 0 auto; */
+}
+
+.hover-effect {
+  width: 230px;
+  height: 51px;
+}
+
+.hover-effect:hover {
+  background-color: #030303;
+  color: #d9b535;
+}
+
+.graphics-layout {
+  overflow-x: auto;
+  padding: 100px;
+  padding-top: 0px;
+  padding-left: 0px;
+}
+
+.our-network-text {
+  padding: 25px;
+  color: #a5a5a5;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+}
+
+.grey-background-body {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: -10px;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.items-grd-cards {
+  width: 300px;
+  /* height: 250px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #464646;
+}
+
+.items-grd-cards img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.sp-style-card {
+  width: 520px;
+  height: 250px;
+  top: 2054px;
+  left: 1415px;
+  gap: 0px;
+  border: 1px 0px 0px 0px;
+  color: #030303;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: left;
+  background-color: #d9b535;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 55px),
+    calc(85% - 10px) 100%,
+    0 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.right-side-div {
+  background-color: #d9b535;
+  // height: 550px;/
+  padding-bottom: 60px;
+
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+  // width: 910.9px;
+  // margin-left: -35%;
+  // margin-top: 200px;
+}
+
+.shooting-image {
+  z-index: 9;
+  margin-left: -105px;
+  margin-top: 120px;
+}
+
+.shooting-image img {
+  /* max-width: inherit;
+  margin-left: -50px;
+  padding: 150px; */
+  /* margin-top:50px; */
+  max-width: inherit;
+  margin-left: -93px;
+  padding: 180px;
+  padding-bottom: 120px;
+}
+
+.cut-corner {
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%, 0 10%);
+}
+
+.pbug-game-section {
+  margin-top: 80px;
+}
+
+.power-of-music {
+  font-size: 36px;
+  padding-top: 50px;
+  font-weight: 700;
+  padding-left: 160px;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+  text-align: left;
+  color: #030303;
+}
+
+.how-it-text {
+  color: #030303;
+  padding-left: 200px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 33.6px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.upload-edge-text {
+  padding-left: 170px;
+  font-size: 20px;
+  font-weight: 700;
+  padding-top: 20px;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: left;
+  color: #030303;
+}
+
+.quickly-edge-text {
+  color: #0a0a0a;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  padding-left: 170px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.cutting-edge-text {
+  font-size: 16px;
+  font-weight: 600;
+  padding-left: 170px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  padding-right: 24px;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: left;
+  color: #030303;
+}
+
+.overall-spacing-text {
+  padding: 60px;
+  padding-left: 120px;
+}
+
+.text-outline {
+  /* font-family: 'Play', sans-serif; */
+  font-size: 60px;
+  font-weight: 700;
+  /* line-height: 76.8px;
+  letter-spacing: -0.03em; */
+  text-align: left;
+  flex-direction: column;
+  /* Stacks the elements vertically */
+  justify-content: center;
+  /* Vertically centers the elements */
+  align-items: center;
+  /* Horizontally centers the elements */
+  text-align: center;
+  /* Make text transparent */
+  color: transparent;
+
+  /* Text outline (stroke) */
+  -webkit-text-stroke: 1px #030303;
+  /* for webkit-based browsers */
+  text-stroke: 1px #030303;
+  /* fallback for other browsers */
+
+  /* Optional: You can also use text-shadow if you want */
+  /* text-shadow: -1px -1px 0 #030303, 1px -1px 0 #030303, -1px 1px 0 #030303, 1px 1px 0 #030303; */
+}
+
+.align-center {
+  display: flex;
+  flex-direction: column;
+  /* Stacks the elements vertically */
+  justify-content: center;
+  /* Vertically centers the elements */
+  align-items: center;
+  /* Horizontally centers the elements */
+  text-align: center;
+  /* Centers the text within each element */
+  height: 100vh;
+  /* Optional: Ensures it takes up the full height of the viewport */
+}
+
+.artist-text {
+  color: #a5a5a5;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.8px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.artist-name-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.top-navbar-music-page {
+  /* width: 80%;
+  float: right; */
+}
+
+.side-navbar-section {
+  background-color: #0c0c0c;
+  border: 1px solid #282828;
+}
+
+.library-text {
+  /* background-color: #030303; */
+  width: 224px;
+  /* padding: 12px; */
+  /* margin-left: 13px; */
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+}
+
+.sidebar-down-text {
+  padding-left: 12px;
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.music-radio-button img {
+  margin-left: 81rem;
+}
+
+/* .top-navbar-music-page{
+  margin-top: 100px;
+} */
+.content-music-sidebar {
+  margin-left: 60px;
+}
+
+.music-email-text-com {
+  width: 575px;
+  height: 51px;
+  background-color: #0c0c0c;
+  border: 1px solid #282828;
+}
+.music-email-text {
+  width: 299px;
+  height: 56px;
+  background-color: #0c0c0c;
+  border: 1px solid #282828;
+}
+
+.add-music-btn {
+  /* margin-left: 20px; */
+  font-family: var(--font-rajdhani);
+  color: #030303;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.do-not-next {
+  font-family: var(--font-rajdhani);
+  color: #a5a5a5;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.forget-password-text {
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: #a5a5a5;
+}
+
+.sign-up-bottom {
+  font-family: var(--font-rajdhani);
+  color: #d9b535;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.Sign-Up-Section {
+  padding-top: 100px;
+}
+
+.add-music-plus-btn {
+  width: 142px;
+  height: 56px;
+  background-color: #d9b535;
+}
+
+.music-form-section {
+  margin-top: 25px;
+  padding: 9px;
+  width: 488px;
+  height: 540px;
+  background-color: #101010;
+}
+
+.music-form-input-type {
+  /* width: 456px; */
+  height: 50px;
+  background-color: #0c0c0c;
+  border: 1px solid #282828;
+}
+
+.sign-in-corner-cut {
+  width: 376px;
+  height: 50px;
+  // clip-path: polygon(0 0, 100% 0, 100% 50%, 96% 100%, 0 100%);
+  background-color: #d9b535;
+  font-family: var(--font-rajdhani);
+  color: #030303;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.Login-music-font {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+}
+
+.Music-login-page-logo {
+  margin-left: 105px;
+  /* margin-bottom: 40px; */
+}
+
+.Music-login-page-logo-two {
+  /* margin-left: 110px; */
+  margin-bottom: 180px;
+}
+
+.music-x {
+  margin-bottom: 50px;
+}
+
+.library-text:hover {
+}
+
+.form-music-next-btn {
+  width: 180px;
+  height: 56px;
+  border: 1px solid #464646;
+  font-family: var(--font-rajdhani);
+  color: #a5a5a5;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: #030303;
+  background-color: #d9b535;
+}
+
+.form-music-next-btn-one {
+  width: 180px;
+  height: 56px;
+  border: 1px solid #464646;
+  font-family: var(--font-rajdhani);
+  color: #a5a5a5;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: #a5a5a5;
+  /* background-color: #D9B535; */
+}
+
+.next-music-button {
+  font-family: var(--font-rajdhani);
+
+  color: #030303;
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.music-play-pause-section {
+  height: 132px;
+  background-color: #101010;
+}
+
+.large-play-pause-centre-icon {
+  width: 42px;
+  height: 42px;
+  background-color: #d9b535;
+}
+
+.last-step-music-section {
+  padding: 15px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  position: sticky;
+  width: 100%;
+  left: 10px;
+  bottom: 0;
+}
+
+.progress-bar-music {
+  height: 4px;
+  background-color: #d9b535;
+}
+
+.navbar-hamburger-text-icon {
+  /* margin-left: 245px; */
+  padding: 5px;
+}
+
+.sidebar-body {
+  background-color: #101010;
+  border: 1px solid #282828;
+}
+
+.client-song-text {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.client-small-text {
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.music-title {
+  font-family: var(--font-rajdhani);
+  color: #f4f4f4;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.artist-name-title {
+  font-family: var(--font-rajdhani);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.drop-music-section {
+  margin-top: 50px;
+}
+
+/* .drop-select-music-section{
+    background-color: #101010;
+  } */
+
+.drop-select-music-section {
+  display: flex;
+  background-color: #101010;
+  width: 252px;
+  height: 84px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  cursor: pointer;
+  border: 1px dashed #282828;
+  /* Dashed border with a light gray color */
+}
+
+.upload-icon {
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.upload-text {
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.drop-music-icon-content {
+  margin-top: 10%;
+  margin-left: 100px;
+}
+
+.library-musiic-text {
+  padding-left: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.music-layout-song-icon {
+  margin-left: 35px;
+}
+
+// .btn-cut-login-page-button {
+//   clip-path: polygon(0 0, 100% 0, 100% 50%, 90% 100%, 0 100%);
+// }
+
+.contact-profile-section-card {
+  background-color: #d9b535;
+}
+
+.home-text-card {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 33.6px;
+  letter-spacing: -0.03em;
+  color: #030303;
+}
+
+.our-network-text-card {
+  font-family: var(--font-rajdhani);
+  padding: 25px;
+  color: #030303;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+}
+
+input:not([type="checkbox"]):not([type="radio"]).form-control-2,
+div.form-control-2 {
+  width: 100%;
+  padding: 20px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 19.2px;
+  outline: none;
+  background: transparent;
+  color: white;
+  appearance: none;
+}
+input:not([type="checkbox"]):not([type="radio"]).form-control-2
+  .ElementsApp
+  input,
+div.form-control .ElementsApp input {
+  color: #fff !important;
+}
+input:not([type="checkbox"]):not([type="radio"]).form-control-2::placeholder,
+div.form-control::placeholder {
+  color: #f2f2f2;
+  opacity: 0.2;
+}
+input:not([type="checkbox"]):not(
+    [type="radio"]
+  ).form-control-2:-webkit-autofill,
+div.form-control:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  box-shadow: 0 0 0px 1000px transparent inset;
+  background-color: transparent !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+input:not([type="checkbox"]):not(
+    [type="radio"]
+  ).form-control-2:-webkit-autofill:hover,
+div.form-control:-webkit-autofill:hover,
+input:not([type="checkbox"]):not(
+    [type="radio"]
+  ).form-control-2:-webkit-autofill:focus,
+div.form-control:-webkit-autofill:focus,
+input:not([type="checkbox"]):not(
+    [type="radio"]
+  ).form-control-2:-webkit-autofill:active,
+div.form-control:-webkit-autofill:active {
+  background-color: transparent !important;
+  -webkit-text-fill-color: white !important;
+}
+table {
+  tr {
+    border-bottom: 1px solid #282828;
+  }
+
+  th {
+    text-align: left;
+    color: #a5a5a5;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.8px;
+    letter-spacing: -0.03em;
+    padding: 16px;
+  }
+
+  td {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    letter-spacing: -0.03em;
+    text-align: left;
+    padding: 16px;
+  }
+}
+
+.search-bar {
+  background-color: #0c0c0c;
+  width: 299px;
+  height: 56px;
+  border: 1px solid #282828;
+}
+
+.card-tile {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: #141414;
+  border-radius: 8px;
+  box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+.header-container {
+  background-color: #141414;
+  border-bottom: 1px solid #282828;
+}
+
+.dashboard-screen {
+  .sidebar {
+    background: #141414;
+    border-right: 1px solid #282828;
+  }
+}
+
+.border-custom-yellow {
+  border-color: #d9b535;
+  color: #d9b535 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+.mobile-nav-new {
+  height: 60px;
+  width: 150px;
+}
+@media (max-width: 768px) {
+  .contact-profile-section {
+    margin-top: 25px;
+  }
+  .review-card-mobile {
+    padding: 20px;
+  }
+  .review-box {
+    margin-top: 20px;
+  }
+  .main-heading {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 35px;
+
+    padding-top: 50px;
+    letter-spacing: -0.03em;
+  }
+  .header-home-page {
+    padding: 10px;
+  }
+  .Upper-text-format {
+    padding-top: 20px;
+    font-size: 16px;
+  }
+  .grey-background-body {
+    display: inline-block;
+    // display: flex;
+    flex-wrap: nowrap;
+    margin-left: -10px;
+    gap: 0;
+    // overflow-x: auto;
+  }
+  .graphics-layout {
+    margin: 0px;
+    text-align: center;
+    padding: 41px;
+  }
+
+  .sp-style-card {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    // margin-top: 20px;
+  }
+  .tracking-tight-text {
+    color: #f4f4f4;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+  .trust-our-text {
+    color: #d9b535;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+  .faqs-corner-cut {
+    padding: 0px;
+    margin: 0px;
+    clip-path: polygon(0 0, 100% 0, 100% 81%, 70% 100%, 0 100%);
+  }
+  .faqs-box {
+    padding: 20px;
+  }
+  .power-of-music {
+    padding: 0px;
+    line-height: 30px;
+    font-size: 20px;
+    // text-align: center;
+  }
+
+  /* Adjust cutting-edge-text font size */
+  .cutting-edge-text {
+    font-size: 16px;
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    // text-align: center;
+  }
+
+  /* Adjust how-it-text font size */
+  .how-it-text {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    // padding-bottom: 10px;
+    padding: 0px;
+
+    // text-align: center;
+  }
+
+  /* Make upload-edge-text more compact */
+  .upload-edge-text {
+    padding: 0px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .quickly-edge-text {
+    padding: 0px;
+
+    font-size: 14px;
+    // text-align: center;
+  }
+
+  /* Padding and margins */
+  .right-side-div {
+    // padding: 0 15px;
+  }
+
+  /* Ensure elements are stacked and aligned */
+  .right-side-div {
+    // text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .items-grd-cards {
+    width: 100%;
+    /* height: 250px; */
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #464646;
+  }
+  // login form
+  .sign-in-corner-cut {
+    width: 100%;
+  }
+  .login-mobile-field {
+    margin: 10px;
+  }
+  .forget-password-text {
+    margin-right: 17px;
+  }
+  .form-music-next-btn-one {
+    width: 100%;
+  }
+  .Music-login-page-logo {
+    margin-left: 60px;
+  }
+  // profile-completion
+
+  .profile-view-mobile {
+    padding: 20px;
+  }
+}

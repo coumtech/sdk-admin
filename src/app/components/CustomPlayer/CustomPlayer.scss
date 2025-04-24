@@ -1,0 +1,58 @@
+.audio-player-container {
+  display: flex;
+  align-items: center;
+  background-color: #111;
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.audio-player-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.audio-player-details {
+  flex: 1;
+  margin-left: 15px;
+  text-align: left;
+}
+
+.audio-player-details h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.audio-player-details p {
+  margin: 4px 0;
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.audio-player-controls {
+  flex-basis: 82%;
+}
+
+.rhap_container {
+  background-color: transparent;
+  box-shadow: none;
+  color: white;
+}
+
+.rhap_main-controls-button {
+  color: #D9B535;
+}
+
+.rhap_time,
+.rhap_volume-controls {
+  color: white;
+}
+
+.rhap_progress-indicator {
+  background-color: #D9B535;
+}

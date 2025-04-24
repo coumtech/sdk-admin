@@ -1,0 +1,58 @@
+name: Deploy Next.js (coum-app) to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy coum-app to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the code
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    # Step 2: Install dependencies and build the project
+    - name: Install and Build coum-app
+      run: |
+        npm install
+        npm run build
+
+    # Step 3: Deploy to EC2 via SCP
+    - name: Copy Files to EC2
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_KEY }}
+        source: "."
+        target: "/home/ubuntu/coum-app"
+
+    # Step 4: SSH to EC2 and Restart coum-app
+    - name: Install and Restart coum-app with PM2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          # Load NVM and set Node.js 20
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+          nvm use 20 || nvm install 20
+          node -v
+
+          # Navigate to app directory and run deployment commands
+          cd /home/ubuntu/coum-app
+          npm install
+          npm run build
+          pm2 restart coum-app || pm2 start "npm run start" --name "coum-app"

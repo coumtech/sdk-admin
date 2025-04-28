@@ -7,6 +7,7 @@ import {
   XMarkIcon,
   HomeIcon,
   MusicalNoteIcon,
+  ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
 import { IoIosList } from "react-icons/io";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -33,6 +34,11 @@ export const navLinks = [
     href: "/admin/music",
     icon: <MusicalNoteIcon className="w-6 h-6" />,
     label: "Music",
+  },
+  {
+    href: "/admin/games",
+    icon: <ComputerDesktopIcon className="w-6 h-6" />,
+    label: "Games",
   },
 ];
 

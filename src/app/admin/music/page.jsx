@@ -292,16 +292,6 @@ export default function Musiclist() {
                     Add {currentTab}
                   </span>
                 </button>
-                {
-                  // currentTab == 'Music' &&
-                  // <button
-                  //   className="add-music-plus-btn flex items-center px-3"
-                  //   onClick={() => setOpenBatchModal(true)}
-                  // >
-                  //   <Image src={plusicon} alt="plusicon" />
-                  //   <span className="px-2">Batch Upload</span>
-                  // </button>
-                }
               </div>
             </div>
           </div>

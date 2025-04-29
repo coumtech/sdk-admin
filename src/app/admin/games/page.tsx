@@ -36,9 +36,9 @@ export interface Game {
 interface TableRow extends Game { }
 
 interface Column {
-  field?: keyof TableRow;
+  field: string;
   headerName: string;
-  renderCell?: (row: TableRow) => React.ReactNode;
+  renderCell?: (row: any) => React.ReactNode;
 }
 
 const tabs = [
@@ -59,11 +59,11 @@ export default function GamesList() {
   const router = useRouter();
   let searchResultTimeOut: NodeJS.Timeout | null = null;
 
-  const columns = [
+  const columns: Column[] = [
     {
       field: 'coverUrl',
       headerName: 'Game Image',
-      renderCell: (row: TableRow) => (
+      renderCell: (row) => (
         <Image src={row.coverUrl} alt="cover" width={50} height={50} />
       ),
     },
@@ -71,8 +71,9 @@ export default function GamesList() {
     { field: 'developer', headerName: 'Developer' },
     { field: 'genre', headerName: 'Genre' },
     {
+      field: 'id',
       headerName: 'Action',
-      renderCell: (row: TableRow) => (
+      renderCell: (row) => (
         <button className="game-view-button"
           onClick={() => { handleView('games', row.id) }}
         >
@@ -83,8 +84,9 @@ export default function GamesList() {
       )
     },
     {
+      field: 'id',
       headerName: '',
-      renderCell: (row: TableRow) => (
+      renderCell: (row) => (
         <button onClick={() => handleGameDelete(row.id)} >Delete</button>
       ),
     },

@@ -18,28 +18,29 @@ const CLIENT_ID = '1010845961431-rgkc6f7vueka90lvdeptf4k1dmo0d3uf.apps.googleuse
 const API_KEY = 'AIzaSyCzafv0MwqlOIr5iStL9VOHV1SV8lAx7_I';
 const SCOPES = 'https://www.googleapis.com/auth/drive.readonly';
 
+interface FormData {
+    title: string;
+    developer: string;
+    description: string;
+    genre: string;
+    cover?: FileList;
+}
+
 const schema = yup.object().shape({
     title: yup.string().required('Title is required'),
     developer: yup.string().required('Developer is required'),
     description: yup.string().required('Description is required'),
     genre: yup.string().required('Genre is required'),
     cover: yup
-        .mixed()
+        .mixed<FileList>()
         .test('required', 'Cover image is required', (value) => {
-            return value && (value as FileList).length > 0;
+            return value && value.length > 0;
         })
         .test('fileType', 'Cover image must be an image file', (value) => {
-            return value && (value as FileList).length > 0 && (value as FileList)[0].type.startsWith('image/');
-        }),
+            return value && value.length > 0 && value[0].type.startsWith('image/');
+        })
+        .optional(),
 });
-
-interface FormData {
-    title: string;
-    developer: string;
-    description: string;
-    genre: string;
-    cover: FileList;
-}
 
 const BatchUploadWithMetadataModal: React.FC<BatchUploadWithMetadataProps> = ({
     open,

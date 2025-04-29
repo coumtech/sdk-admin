@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
 
     const isAuthenticated = decoded && (decoded as any).exp > Date.now() / 1000;
 
-    if (pathname.startsWith('/developer/') && !isAuthenticated) {
+    if (pathname.startsWith('/admin') && !isAuthenticated) {
         const redirectTo = encodeURIComponent(pathname);
         const loginUrl = `${request.nextUrl.origin}/login?redirectTo=${redirectTo}`;
         return NextResponse.redirect(loginUrl);
@@ -19,5 +19,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/developer/:path*', '/home/:path*'],
+    matcher: ['/admin/:path*', '/home/:path*'],
 };

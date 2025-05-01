@@ -25,11 +25,11 @@ export const navLinks = [
   //   icon: <HomeIcon className="w-6 h-6" />,
   //   label: "Home",
   // },
-  // {
-  //   href: "/admin/playlist",
-  //   icon: <IoIosList className="w-6 h-6" />,
-  //   label: "Playlist",
-  // },
+  {
+    href: "/admin/playlist",
+    icon: <IoIosList className="w-6 h-6" />,
+    label: "Playlist",
+  },
   {
     href: "/admin/music",
     icon: <MusicalNoteIcon className="w-6 h-6" />,

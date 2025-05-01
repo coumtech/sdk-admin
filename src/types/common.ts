@@ -1,9 +1,8 @@
-export interface PaginationResponse<T> {
+export type PaginationResponse<T, K extends string = 'data'> = {
     totalItems: number;
     totalPages: number;
     currentPage: number;
-    data: T[];
-}
+} & Record<K, T[]>;
 
 export interface PaginationRequest {
     search?: string;

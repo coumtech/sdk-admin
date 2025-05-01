@@ -1,6 +1,8 @@
+import { Track } from './music';
+
 export interface Playlist {
     id?: number;
-    title: string;
+    name: string;
     appCategory: string;
     description?: string;
     cover?: string;
@@ -11,4 +13,5 @@ export interface Playlist {
     userId: number;
     createdAt: string;
     updatedAt: string;
-  }
+    songs?: Track[];
+}

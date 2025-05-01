@@ -27,16 +27,7 @@ import AppService from "@/services/appService";
 import './styles/model.scss'
 
 const schema = yup.object().shape({
-  title: yup.string().required("Playlist Name is required"),
-  appCategory: yup.string().required("App category is required"),
-  cover: yup
-    .mixed()
-    .test('required', 'Cover image is required', (value) => {
-      return value && (value as FileList).length > 0;
-    })
-    .test('fileType', 'Cover image must be an image file', (value) => {
-      return value && (value as FileList).length > 0 && (value as FileList)[0].type.startsWith('image/');
-    }),
+  name: yup.string().required("Playlist Name is required"),
 });
 
 export default function PlaylistComponent() {
@@ -56,7 +47,7 @@ export default function PlaylistComponent() {
     formState: { errors },
     reset,
     setValue,
-  } = useForm<{ title: string; appCategory: string, cover?: any }>({
+  } = useForm<{ name: string }>({
     resolver: yupResolver(schema),
   });
 
@@ -92,8 +83,7 @@ export default function PlaylistComponent() {
     if (playlist) {
       setEditMode(true);
       setSelectedPlaylist(playlist);
-      setValue("title", playlist.title);
-      setValue("appCategory", playlist.appCategory);
+      setValue("name", playlist.name);
     } else {
       setEditMode(false);
       setSelectedPlaylist(null);
@@ -102,21 +92,13 @@ export default function PlaylistComponent() {
     setIsOpen((prev) => !prev);
   };
 
-  const onSubmit: SubmitHandler<{ title: string, appCategory: string, cover?: any }> = async (data) => {
-    console.log('data -: ', data)
+  const onSubmit: SubmitHandler<{ name: string }> = async (data) => {
     try {
-
       const formData = new FormData();
-
-      formData.append('title', data.title);
-      formData.append('appCategory', data.appCategory);
-
-      if (data.cover && data.cover[0]) {
-        formData.append('cover', data.cover[0]);
-      }
+      formData.append('name', data.name);
 
       if (editMode && selectedPlaylist) {
-        await PlaylistService.updatePlaylist(selectedPlaylist.id!, formData); // Assuming `updatePlaylist` method exists
+        await PlaylistService.updatePlaylist(selectedPlaylist.id!, formData);
       } else {
         await PlaylistService.createPlaylist(formData);
       }
@@ -135,7 +117,7 @@ export default function PlaylistComponent() {
   };
 
   const filteredPlaylists = playlists.filter((playlist) =>
-    playlist.title.toLowerCase().includes(searchTerm.toLowerCase())
+    playlist.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -194,47 +176,16 @@ export default function PlaylistComponent() {
                     Playlist Name
                   </label>
                   <input
-                    {...register("title")}
+                    {...register("name")}
                     className="w-full p-[16px] border border-gray-300 focus:outline-none rounded bg-[#0C0C0C] text-white"
                     type="text"
                     placeholder="Enter playlist name"
                   />
-                  {errors.title && (
+                  {errors.name && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.title.message}
+                      {errors.name.message}
                     </p>
                   )}
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium mb-2 text-gray-300">
-                    Target Apps
-                  </label>
-                  <select
-                    {...register("appCategory")}
-                    className="w-full p-[16px] border border-gray-300 focus:outline-none rounded bg-[#0C0C0C] text-white"
-                    onChange={(e) => setValue("appCategory", e.target.value)}
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Select app category
-                    </option>
-                    {appCategories.map((category) => (
-                      <option key={category.code} value={category.code}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-300">Cover</label>
-                  <div className="form-group">
-                    <input
-                      type="file"
-                      {...register('cover')}
-                      className={`form-control ${errors.cover ? 'is-invalid' : ''}`}
-                      accept="image/*"
-                    />
-                  </div>
                 </div>
                 <div className="flex justify-end space-x-4">
                   <button
@@ -278,7 +229,7 @@ export default function PlaylistComponent() {
                 <div className="flex justify-between	items-center py-5">
                   {/* Left Side: Playlist Details */}
                     <Link href={`/admin/playlist/${playlist.id}`}>
-                      {playlist.title}
+                      {playlist.name}
                     </Link>
 
                   {/* Right Side: Edit Menu */}

@@ -21,23 +21,22 @@ export default function PlaylistSongView() {
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (playlistId) {
-      loadPlaylistSongs(Number(playlistId));
+      loadPlaylistSongs((playlistId));
     }
   }, [playlistId]);
 
-  const loadPlaylistSongs = useCallback(async (id: number) => {
+  const loadPlaylistSongs = useCallback(async (id: string) => {
     try {
       const playlistData = await PlaylistService.getPlaylistById(id);
       setPlaylist(playlistData);
 
-      // const playlistSongs = await PlaylistService.getPlaylistSongs(id);
-      const playlistSongs = playlistData.tracks;
+      const playlistSongs = playlistData.songs || [];
       setSongs(playlistSongs);
 
       // Load all songs available to add to the playlist
       const allSongs = await MusicService.getAllSongs({}); // Assuming this method exists
       setAvailableSongs(
-        allSongs.data.filter(
+        allSongs.songs.filter(
           (song) => !playlistSongs.some((ps) => ps.id === song.id)
         )
       );
@@ -46,11 +45,11 @@ export default function PlaylistSongView() {
     }
   }, []);
 
-  const handleAddSong = async (songId: number) => {
+  const handleAddSong = async (songId: string) => {
     if (playlistId) {
       try {
-        await PlaylistService.addSongToPlaylist(Number(playlistId), songId);
-        loadPlaylistSongs(Number(playlistId));
+        await PlaylistService.addSongToPlaylist((playlistId), songId);
+        loadPlaylistSongs((playlistId));
         setIsAddSongModalOpen(false);
       } catch (error) {
         console.error("Error adding song to playlist:", error);
@@ -58,14 +57,14 @@ export default function PlaylistSongView() {
     }
   };
 
-  const handleRemoveSong = async (songId: number) => {
+  const handleRemoveSong = async (songId: string) => {
     if (playlistId) {
       try {
         await PlaylistService.removeSongFromPlaylist(
-          Number(playlistId),
+          (playlistId),
           songId
         );
-        loadPlaylistSongs(Number(playlistId));
+        loadPlaylistSongs(playlistId);
       } catch (error) {
         console.error("Error removing song from playlist:", error);
       }
@@ -87,7 +86,7 @@ export default function PlaylistSongView() {
                 className="text-2xl font-bold"
                 style={{ fontSize: "40px", color: "#F4F4F4", fontWeight: "700" }}
               >
-                {playlist?.title}
+                {playlist?.name}
               </h1>
               <span
                 className="text-2xl font-bold font-rajdhani"
@@ -113,7 +112,7 @@ export default function PlaylistSongView() {
         <table className="w-full">
           <thead>
             <tr>
-              <th>Title</th>
+              <th>Name</th>
               <th>Artist</th>
               <th>Actions</th>
             </tr>
@@ -122,7 +121,7 @@ export default function PlaylistSongView() {
             {songs.map((song: any) => (
               <tr key={song.id}>
                 <td>{song.title}</td>
-                <td>{song.artist?.name}</td>
+                <td>{song.artist}</td>
                 <td>
                   <button onClick={() => handleRemoveSong(song.id)}>
                     Remove
@@ -147,7 +146,7 @@ export default function PlaylistSongView() {
           <div className="mb-4">
             <select
               className="w-full p-[16px] border border-gray-300 rounded bg-[#0C0C0C] text-white"
-              onChange={(e) => handleAddSong(Number(e.target.value))}
+              onChange={(e) => handleAddSong((e.target.value))}
               defaultValue=""
             >
               <option value="" disabled>

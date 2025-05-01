@@ -42,8 +42,8 @@ const musicService = {
     return response.data;
   },
 
-  async getAllSongs(params: PaginationRequest): Promise<PaginationResponse<Track>> {
-    const response = await axiosClient.get<PaginationResponse<Track>>('/api/songs', { params });
+  async getAllSongs(params: PaginationRequest): Promise<PaginationResponse<Track, 'songs'>> {
+    const response = await axiosClient.get<PaginationResponse<Track, 'songs'>>('/api/songs', { params });
     return response.data;
   },
 

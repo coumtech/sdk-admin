@@ -11,8 +11,7 @@ const userService = {
 
     updateProfile: async (profileData: ProfileData): Promise<void> => {
         try {
-            return await axiosClient.put('/api/user/profile', profileData, { headers: { 'Content-Type': 'multipart/form-data' } }
-            ).then(res => res.data);
+            return await axiosClient.patch('/api/users/profile', profileData).then(res => res.data);
         } catch (error) {
             console.error('Update profile failed:', error);
             throw error;
@@ -20,7 +19,7 @@ const userService = {
     },
     getProfile: async (): Promise<any> => {
         try {
-            return await axiosClient.get('/api/user/profile').then(res => res.data);
+            return await axiosClient.get('/api/users/profile').then(res => res.data);
         } catch (error) {
             console.error('get profile failed:', error);
             throw error;
@@ -28,7 +27,7 @@ const userService = {
     },
     updateSocialLinks: async (socialLinks: unknown): Promise<void> => {
         try {
-            await axiosClient.patch('/api/user/social-links', { socialLinks });
+            await axiosClient.patch('/api/users/social-links', { socialLinks });
         } catch (error) {
             console.error('Update social links failed:', error);
             throw error;
@@ -36,7 +35,7 @@ const userService = {
     },
     addPaymentMethod: async (payload: unknown): Promise<void> => {
         try {
-            return await axiosClient.post('/api/user/payment-method', payload);
+            return await axiosClient.post('/api/users/payment-method', payload);
         } catch (error) {
             console.error('Payment method linking failed:', error);
             throw error;
@@ -44,7 +43,7 @@ const userService = {
     },
     removePaymentMethod: async (paymentMethodId: unknown): Promise<void> => {
         try {
-            return await axiosClient.post('/api/user/remove-payment-method', { paymentMethodId });
+            return await axiosClient.post('/api/users/remove-payment-method', { paymentMethodId });
         } catch (error) {
             console.error('Payment method removing failed:', error);
             throw error;
@@ -52,7 +51,7 @@ const userService = {
     },
     listPaymentMethods: async (): Promise<void> => {
         try {
-            return await axiosClient.get('/api/user/payment-method').then(res => res.data);
+            return await axiosClient.get('/api/users/payment-method').then(res => res.data);
         } catch (error) {
             console.error('Payment methods getting failed:', error);
             throw error;
@@ -60,7 +59,7 @@ const userService = {
     },
     listPaymentHistory: async (): Promise<any> => {
         try {
-            return await axiosClient.get('/api/user/payment-history').then(res => res.data);
+            return await axiosClient.get('/api/users/payment-history').then(res => res.data);
         } catch (error) {
             console.error('Payment history getting failed:', error);
             throw error;
@@ -68,7 +67,7 @@ const userService = {
     },
     activateSubscription: async (paymentMethodId: string, productPriceId: string): Promise<void> => {
         try {
-            return await axiosClient.post('/api/user/activate-premium', { paymentMethodId, productPriceId }).then(res => res.data);
+            return await axiosClient.post('/api/users/activate-premium', { paymentMethodId, productPriceId }).then(res => res.data);
         } catch (error) {
             console.error('Activating subscription failed:', error);
             throw error;
@@ -76,7 +75,7 @@ const userService = {
     },
     topupWallet: async (amount: number, paymentMethodId: string): Promise<void> => {
         try {
-            return await axiosClient.post('/api/user/wallet/topup', { amount, paymentMethodId });
+            return await axiosClient.post('/api/users/wallet/topup', { amount, paymentMethodId });
         } catch (error) {
             console.error('Payment method linking failed:', error);
             throw error;
@@ -84,7 +83,7 @@ const userService = {
     },
     deactivateSubscription: async (): Promise<void> => {
         try {
-            return await axiosClient.delete('/api/user/deactivate-premium').then(res => res.data);
+            return await axiosClient.delete('/api/users/deactivate-premium').then(res => res.data);
         } catch (error) {
             console.error('Activating subscription failed:', error);
             throw error;
@@ -92,7 +91,7 @@ const userService = {
     },
     activateDevSubscription: async (paymentMethodId: string): Promise<void> => {
         try {
-            return await axiosClient.post('/api/user/activate-developer-premium', { paymentMethodId }).then(res => res.data);
+            return await axiosClient.post('/api/users/activate-developer-premium', { paymentMethodId }).then(res => res.data);
         } catch (error) {
             console.error('Activating subscription failed:', error);
             throw error;
@@ -100,7 +99,7 @@ const userService = {
     },
     deactivateDevSubscription: async (): Promise<void> => {
         try {
-            return await axiosClient.delete('/api/user/deactivate-developer-premium').then(res => res.data);
+            return await axiosClient.delete('/api/users/deactivate-developer-premium').then(res => res.data);
         } catch (error) {
             console.error('Activating subscription failed:', error);
             throw error;
@@ -108,7 +107,7 @@ const userService = {
     },
     getStorageBreakdown: async (): Promise<any> => {
         try {
-            return await axiosClient.get('/api/user/storage-breakdown').then(res => res.data);
+            return await axiosClient.get('/api/users/storage-breakdown').then(res => res.data);
         } catch (error) {
             console.error('get storage breakdown failed:', error);
             throw error;
@@ -116,7 +115,7 @@ const userService = {
     },
     getAdminDashboardAnalytics: async (): Promise<any> => {
         try {
-            return await axiosClient.get('/api/user/admin-dashboard').then(res => res.data);
+            return await axiosClient.get('/api/users/admin-dashboard').then(res => res.data);
         } catch (error) {
             console.error('get storage breakdown failed:', error);
             throw error;
@@ -124,7 +123,7 @@ const userService = {
     },
     getArtistDashboardAnalytics: async (): Promise<any> => {
         try {
-            return await axiosClient.get('/api/user/artist-dashboard').then(res => res.data);
+            return await axiosClient.get('/api/users/artist-dashboard').then(res => res.data);
         } catch (error) {
             console.error('get storage breakdown failed:', error);
             throw error;
@@ -132,7 +131,7 @@ const userService = {
     },
     getDeveloperDashboardAnalytics: async (): Promise<any> => {
         try {
-            return await axiosClient.get('/api/user/developer-dashboard').then(res => res.data);
+            return await axiosClient.get('/api/users/developer-dashboard').then(res => res.data);
         } catch (error) {
             console.error('get storage breakdown failed:', error);
             throw error;
@@ -140,7 +139,7 @@ const userService = {
     },
     getUserSongEngagement: async (): Promise<any> => {
         try {
-            return await axiosClient.get('/api/user/engagement').then(res => res.data);
+            return await axiosClient.get('/api/users/engagement').then(res => res.data);
         } catch (error) {
             console.error('get storage breakdown failed:', error);
             throw error;

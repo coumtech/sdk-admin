@@ -15,10 +15,8 @@ import {
     flip,
     shift,
 } from '@floating-ui/react';
-import artistService from '@/services/artistService';
-import adminService from "@/services/adminService";
 import * as yup from 'yup';
-import './styles/model.scss';
+import '../../../admin/music/Modal/styles/model.scss';
 import musicService from '@/services/musicService';
 import CreatableSelect from 'react-select/creatable';
 
@@ -54,16 +52,11 @@ const schema = yup.object().shape({
         }),
 });
 
-interface IsrcOption {
-    value: string;
-    label: string;
-}
 
 const BatchUploadWithMetadataModal: React.FC<BatchUploadWithMetadataProps> = ({
     open,
     setOpen,
     getSongs,
-    albums,
     onClose,
 }) => {
     // const [openPicker, authResponse] = useDrivePicker();
@@ -106,20 +99,15 @@ const BatchUploadWithMetadataModal: React.FC<BatchUploadWithMetadataProps> = ({
         register,
         handleSubmit,
         setValue,
-        reset,
         setError,
         formState: { errors },
         watch,
+        control,
     } = useForm({
         resolver: yupResolver(schema),
     });
     const [query, setQuery] = useState('');
 
-    const filteredIsrcs = query === ''
-        ? isrcOptions
-        : isrcOptions.filter((isrc) =>
-            isrc.toLowerCase().includes(query.toLowerCase())
-          );
 
     useEffect(() => {
         if (open) {
@@ -295,7 +283,7 @@ const BatchUploadWithMetadataModal: React.FC<BatchUploadWithMetadataProps> = ({
                 setCurrentFileIndex(0)
                 onClose();
             }
-            await adminService.createSong(formData);
+            await musicService.createArtistSong(formData);
             if (isLast) {
                 getSongs()
             }
@@ -305,17 +293,11 @@ const BatchUploadWithMetadataModal: React.FC<BatchUploadWithMetadataProps> = ({
     };
 
     const isValidIsrc = (input: string) => {
-        // ISRC format: CCXXXYYNNNNN (12 characters)
-        // CC: Country code (2 letters, A–Z)
-        // XXX: Registrant code (3 alphanumeric)
-        // YY: Year of reference (2 digits)
-        // NNNNN: Unique designation code (5 digits)
         const isrcRegex = /^[A-Z]{2}[A-Z0-9]{3}[0-9]{2}[0-9]{5}$/;
         return isrcRegex.test(input.toUpperCase());
     };
 
     const formatIsrc = (input: string) => {
-        // Remove any non-alphanumeric characters and convert to uppercase
         return input.replace(/[^A-Z0-9]/gi, '').toUpperCase();
     };
 

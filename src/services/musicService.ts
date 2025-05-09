@@ -36,6 +36,18 @@ const musicService = {
     });
     return response.data;
   },
+  async lookupIsrc(params: { artistName: string; songTitle: string }): Promise<{ data: Array<{ isrc: string; songName: string; artistName: string }> }> {
+    const response = await axiosClient.post<{ data: Array<{ isrc: string; songName: string; artistName: string }> }>('/api/songs/lookup-isrc', params);
+    return response.data;
+  },
+  async createArtistSong(formData: FormData): Promise<Track> {
+    const response = await axiosClient.post<Track>('/api/songs/artist/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
 
   async getSongs(params: PaginationRequest): Promise<PaginationResponse<Track>> {
     const response = await axiosClient.get<PaginationResponse<Track>>('/api/songs', { params });
@@ -47,13 +59,28 @@ const musicService = {
     return response.data;
   },
 
+  async getAllSongsByArtist(params: PaginationRequest): Promise<PaginationResponse<Track, 'songs'>> {
+    const response = await axiosClient.get<PaginationResponse<Track, 'songs'>>('/api/songs/artist', { params });
+    return response.data;
+  },
+
   async getSongById(id: any): Promise<Track> {
     const response = await axiosClient.get<Track>(`/api/songs/${id}`);
     return response.data;
   },
 
+  async getArtistSongById(id: any): Promise<Track> {
+    const response = await axiosClient.get<Track>(`/api/songs/artist/${id}`);
+    return response.data;
+  },
+
   async removeSongById(id: any): Promise<ActionResponse> {
     const response = await axiosClient.delete<ActionResponse>(`/api/songs/${id}`);
+    return response.data;
+  },
+
+  async removeArtistSongById(id: any): Promise<ActionResponse> {
+    const response = await axiosClient.delete<ActionResponse>(`/api/songs/artist/${id}`);
     return response.data;
   },
 

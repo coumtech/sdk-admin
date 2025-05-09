@@ -3,6 +3,8 @@ import { Play, Rajdhani } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.scss";
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from '@/contexts/AuthContext';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const playFont = Play({ weight: ["400", "700"], subsets: ['latin'], variable: '--font-play' });
 const rajdhaniFont = Rajdhani({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], variable: '--font-rajdhani' })
@@ -22,19 +24,23 @@ export default function RootLayout({
       <script async defer src="https://apis.google.com/js/api.js"></script>
       <script async defer src="https://accounts.google.com/gsi/client"></script>
       <body className={`${playFont.className} ${rajdhaniFont.variable} ${playFont.variable} overflow-x-hidden`}>
-        {children}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ''}>
+          <AuthProvider>
+            {children}
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
+          </AuthProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

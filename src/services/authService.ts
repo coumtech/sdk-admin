@@ -43,14 +43,16 @@ interface ResetPasswordData {
 // });
 
 // Function to handle login
-export const loginUser = async (loginData: LoginData): Promise<void> => {
+export const loginUser = async (loginData: LoginData): Promise<AuthResponse> => {
   try {
-    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/login', loginData);
+    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signin', loginData);
     setCookie('token', response.data.token);
 
     // // Optionally store user info in local storage or context
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('user', JSON.stringify(response.data.user));
+    
+    return response.data;
   } catch (error: any) {
     console.error('Login failed:', error);
     throw error.response?.data?.message ?? error.message ?? error;
@@ -59,7 +61,7 @@ export const loginUser = async (loginData: LoginData): Promise<void> => {
 
 export const loginProvider = async (loginData: ProviderData): Promise<void> => {
   try {
-    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/login/provider', loginData);
+    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signin/provider', loginData);
     // Store the token in cookies
     setCookie('token', response.data.token);
 
@@ -74,7 +76,7 @@ export const loginProvider = async (loginData: ProviderData): Promise<void> => {
 
 export const socialSignup = async (loginData: ProviderData): Promise<void> => {
   try {
-    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/register/provider', loginData);
+    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signup/provider', loginData);
     // Store the token in cookies
     setCookie('token', response.data.token);
 
@@ -90,7 +92,7 @@ export const socialSignup = async (loginData: ProviderData): Promise<void> => {
 // Function to handle registration
 export const registerUser = async (registerData: RegisterData): Promise<void> => {
   try {
-    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/register', registerData);
+    const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signup', registerData);
 
     setCookie('token', response.data.token);
 

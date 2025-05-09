@@ -1,17 +1,15 @@
-
 "use client"
 import Image from "next/image";
 import Link from 'next/link'
 
 import MusicLogo from "@/app/assets/images/MusicLogo.png"
-import { loginProvider, loginUser } from "@/services/authService";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useGoogleLogin } from "@react-oauth/google";
 import { useForm } from "react-hook-form";
-import FacebookLogin from '@greatsumini/react-facebook-login';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Suspense } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
     email: yup.string().email("Invalid email format").required("Email is required"),
@@ -21,7 +19,7 @@ const schema = yup.object().shape({
 function Login() {
     const router = useRouter()
     const searchParams = useSearchParams();
-    const redirectTo = searchParams.get("redirectTo") || "/admin/music";
+    const { login } = useAuth();
 
     const {
         register,
@@ -31,12 +29,37 @@ function Login() {
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data) => {
-        loginUser(data).then(() => {
-            router.push(redirectTo)
-        }).catch((err) => {
-            // toast.error(err);
-        })
+    const getRedirectPath = (role) => {
+        switch (role) {
+            case 'admin':
+                return '/admin/music';
+            case 'artist':
+                return '/artist/music';
+            default:
+                return '/';
+        }
+    };
+
+    const onSubmit = async (data) => {
+        try {
+            const result = await login(data.email, data.password);
+            if (result.success) {
+                toast.success("Login successful!");
+                
+                // Get the redirect path based on user role
+                const redirectPath = getRedirectPath(result.user.role);
+                
+                // If there's a specific redirectTo in the URL, use that instead
+                const redirectTo = searchParams.get("redirectTo");
+                
+                router.push(redirectTo || redirectPath);
+            } else {
+                toast.error(result.error || "Login failed. Please try again.");
+            }
+        } catch (err) {
+            console.error("Login error:", err);
+            toast.error(err.message || "Login failed. Please try again.");
+        }
     };
 
     return (
@@ -82,6 +105,13 @@ function Login() {
                                     Login
                                 </button>
                             </div>
+                            <p className="mt-5 do-not-next">
+                                Don't have an account?
+                                <Link href="/register">
+                                    <span className="sign-up-bottom">Register</span>
+                                </Link>
+
+                            </p>
                         </form>
                     </div>
                 </div>

@@ -4,14 +4,14 @@ import ReactPaginate from 'react-paginate';
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
 
-interface Column {
+export interface Column {
   field: string;
   headerName: string;
   width?: number;
   renderCell?: (row: Row) => React.ReactNode;
 }
 
-interface Row {
+export interface Row {
   [key: string]: any;
 }
 

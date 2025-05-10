@@ -106,7 +106,7 @@ function Login() {
                                 </button>
                             </div>
                             <p className="mt-5 do-not-next">
-                                Don't have an account?
+                                Don&apos;t have an account?
                                 <Link href="/register">
                                     <span className="sign-up-bottom">Register</span>
                                 </Link>

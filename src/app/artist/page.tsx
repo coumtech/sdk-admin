@@ -28,7 +28,7 @@ import {
 import userService from "@/services/userService";
 
 export default function Dashboard() {
-    const [analytics, setAnalytics] = useState({});
+    const [analytics, setAnalytics] = useState<any>({});
 
     useEffect(() => {
         userService.getAdminDashboardAnalytics().then((res) => {
@@ -50,8 +50,8 @@ export default function Dashboard() {
     const options = {
         plugins: {
             legend: {
-                display: false, // Dynamically toggle legend visibility
-                position: "bottom",
+                display: false,
+                position: "bottom" as const,
                 labels: {
                     color: "#F4F4F4",
                 },

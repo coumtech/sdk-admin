@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { setCookie, deleteCookie } from 'cookies-next';
 
 const AuthContext = createContext(null);
 
@@ -39,9 +40,12 @@ export const AuthProvider = ({ children }) => {
 
         if (storedToken && isTokenValid(storedToken)) {
             setUser(JSON.parse(storedUser));
+            // Ensure cookie is set if we have a valid token
+            setCookie('token', storedToken);
         } else {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
+            deleteCookie('token');
             setUser(null);
         }
         setLoading(false);
@@ -66,6 +70,8 @@ export const AuthProvider = ({ children }) => {
                 throw new Error('Invalid token received');
             }
 
+            // Set both cookie and localStorage
+            setCookie('token', token);
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
@@ -79,6 +85,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        deleteCookie('token');
         setUser(null);
         window.location.href = '/login';
     };

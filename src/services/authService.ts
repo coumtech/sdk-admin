@@ -46,11 +46,12 @@ interface ResetPasswordData {
 export const loginUser = async (loginData: LoginData): Promise<AuthResponse> => {
   try {
     const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signin', loginData);
-    setCookie('token', response.data.token);
-
-    // // Optionally store user info in local storage or context
-    localStorage.setItem('token', response.data.token);
-    localStorage.setItem('user', JSON.stringify(response.data.user));
+    const { token, user } = response.data;
+    
+    // Set both cookie and localStorage
+    setCookie('token', token);
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
     
     return response.data;
   } catch (error: any) {
@@ -62,12 +63,12 @@ export const loginUser = async (loginData: LoginData): Promise<AuthResponse> => 
 export const loginProvider = async (loginData: ProviderData): Promise<void> => {
   try {
     const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signin/provider', loginData);
-    // Store the token in cookies
-    setCookie('token', response.data.token);
-
-    // // Optionally store user info in local storage or context
-    localStorage.setItem('token', response.data.token);
-    localStorage.setItem('user', JSON.stringify(response.data.user));
+    const { token, user } = response.data;
+    
+    // Set both cookie and localStorage
+    setCookie('token', token);
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
   } catch (error) {
     console.error(error);
     throw error;
@@ -77,12 +78,12 @@ export const loginProvider = async (loginData: ProviderData): Promise<void> => {
 export const socialSignup = async (loginData: ProviderData): Promise<void> => {
   try {
     const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signup/provider', loginData);
-    // Store the token in cookies
-    setCookie('token', response.data.token);
-
-    // // Optionally store user info in local storage or context
-    localStorage.setItem('token', response.data.token);
-    localStorage.setItem('user', JSON.stringify(response.data.user));
+    const { token, user } = response.data;
+    
+    // Set both cookie and localStorage
+    setCookie('token', token);
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
   } catch (error) {
     console.error('Login failed:', error);
     throw error;
@@ -93,12 +94,12 @@ export const socialSignup = async (loginData: ProviderData): Promise<void> => {
 export const registerUser = async (registerData: RegisterData): Promise<void> => {
   try {
     const response: AxiosResponse<AuthResponse> = await apiClient.post('/api/auth/signup', registerData);
-
-    setCookie('token', response.data.token);
-
-    // // Optionally store user info in local storage or context
-    localStorage.setItem('token', response.data.token);
-    localStorage.setItem('user', JSON.stringify(response.data.user));
+    const { token, user } = response.data;
+    
+    // Set both cookie and localStorage
+    setCookie('token', token);
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
   } catch (error) {
     console.error('Registration failed:', error);
     throw error;
@@ -126,7 +127,6 @@ export const resetPassword = async (passwordResetData: ResetPasswordData): Promi
 // Function to handle logout
 export const logoutUser = (): void => {
   deleteCookie('token');
-
   localStorage.removeItem('user');
   localStorage.removeItem('token');
 };

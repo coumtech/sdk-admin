@@ -22,7 +22,11 @@ function decodeJwt(token: string) {
 }
 
 export function middleware(request: NextRequest) {
-    const token = request.cookies.get('token')?.value;
+    // Check both cookie and localStorage for token
+    const cookieToken = request.cookies.get('token')?.value;
+    const localStorageToken = request.headers.get('x-local-storage-token');
+    const token = cookieToken || localStorageToken;
+    
     const pathname = request.nextUrl.pathname;
 
     // Allow access to public routes

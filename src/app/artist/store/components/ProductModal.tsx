@@ -57,7 +57,7 @@ export function ProductModal({
     defaultValues: {
       name: initialData?.name || "",
       description: initialData?.description || "",
-      price: initialData?.price || "",
+      price: initialData?.price?.toString() || "",
     },
   });
 
@@ -113,7 +113,7 @@ export function ProductModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] bg-gray-900 border-gray-800">
+      <DialogContent className="sm:max-w-[425px] bg-[#141414] border-gray-800">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-white">
             {initialData ? "Edit Product" : "Add New Product"}
@@ -164,6 +164,7 @@ export function ProductModal({
                   <FormControl>
                     <Input 
                       type="number" 
+                      step="0.01"
                       placeholder="0.00" 
                       {...field}
                       className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus-visible:ring-[#d9b535]"

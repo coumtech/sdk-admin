@@ -73,7 +73,7 @@ export default function StorePage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <Card key={product.id} className="bg-gray-900 border-gray-800">
+            <Card key={product.id} className="bg-[#141414] border-gray-800">
               <CardHeader>
                 <CardTitle className="text-xl font-bold text-white">
                   {product.name}

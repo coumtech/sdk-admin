@@ -7,8 +7,43 @@ export interface Product {
   id: string;
   name: string;
   description: string;
-  price: string;
+  price: number;
   imageUrl: string;
+  artist?: string;
+  createdAt: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
+  updatedAt: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
+}
+
+export interface Pagination {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export interface Filters {
+  maxPrice?: number;
+  minPrice?: number;
+  artist?: string;
+  search?: string;
+}
+
+export interface Sort {
+  field: string;
+  order: 'asc' | 'desc';
+}
+
+export interface ProductsResponse {
+  products: Product[];
+  pagination: Pagination;
+  filters: Filters;
+  sort: Sort;
 }
 
 export const productService = {
@@ -37,5 +72,15 @@ export const productService = {
 
   async deleteProduct(id: string): Promise<void> {
     await axiosClient.delete(`/api/products/artist/${id}`);
+  },
+
+  async getAllProducts(params?: URLSearchParams): Promise<ProductsResponse> {
+    const response = await axiosClient.get(`/api/products?${params?.toString()}`);
+    return response.data;
+  },
+
+  async getProductById(id: string): Promise<Product> {
+    const response = await axiosClient.get(`/api/products/${id}`);
+    return response.data;
   },
 }; 

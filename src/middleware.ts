@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 // List of public routes that don't require authentication
-const publicRoutes = ['/login', '/signup', '/forgot-password', '/reset-password', '/profile-completion'];
+const publicRoutes = ['/login', '/signup', '/forgot-password', '/reset-password', '/profile-completion', '/store'];
 
 // Function to decode JWT without verification (since we're in Edge Runtime)
 function decodeJwt(token: string) {

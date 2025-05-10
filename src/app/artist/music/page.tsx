@@ -22,6 +22,7 @@ import adminService from "@/services/adminService";
 import { usePlayer } from "@/contexts/PlayerContext";
 import { Track, Album } from '@/types/music';
 import { Column, Row } from '@/app/components/UI/Table';
+import { Card } from "@/app/components/UI/Card";
 
 const tabs = [
   { label: 'All Songs', value: 'Music' },
